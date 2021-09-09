@@ -18,7 +18,7 @@ now = datetime.datetime.now()
 date = now.strftime("%d %B %Y")
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////portfolio projects/an online shop/item.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///items.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'adadiadjadhydjqddq27e2jdhUDA'
 db = SQLAlchemy(app)
