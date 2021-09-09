@@ -11,7 +11,7 @@ from functools import wraps
 from form import CreateForm,ReviewForm
 from flask_gravatar import Gravatar
 
-d = None
+
 
 
 now = datetime.datetime.now()
@@ -67,7 +67,7 @@ class Category(db.Model):
     name = db.Column(db.String(50), nullable=False,)
 
 
-db.create_all()
+
 
 class Item(db.Model):
     __tablename__ = 'items'
@@ -88,8 +88,6 @@ class Item(db.Model):
 
 
 
-db.create_all()
-db.session.commit()
 
 
 
@@ -104,8 +102,7 @@ class User(UserMixin,db.Model):
     reviewer = db.relationship("Review", back_populates="author")
 
 
-db.create_all()
-db.session.commit()
+
 
 class CartItem(db.Model):
     __tablename__ = 'cartitem'
@@ -119,8 +116,7 @@ class CartItem(db.Model):
 
 
 
-db.create_all()
-db.session.commit()
+
 
 
 class Review(db.Model):
@@ -135,8 +131,7 @@ class Review(db.Model):
     text = db.Column(db.String(250), nullable=False)
 
 
-db.create_all()
-db.session.commit()
+
 
 
 class Contact(db.Model):
@@ -148,8 +143,7 @@ class Contact(db.Model):
     text = db.Column(db.String(250), nullable=False)
 
 
-db.create_all()
-db.session.commit()
+
 
 class Checkout(db.Model):
     __tablename__ = 'delivery'
@@ -166,8 +160,6 @@ class Checkout(db.Model):
     address = db.Column(db.String(250), nullable=False)
 
 
-db.create_all()
-db.session.commit()
 
 
 ROWS_PER_PAGE = 6
