@@ -10,6 +10,7 @@ from werkzeug.security import generate_password_hash,check_password_hash
 from functools import wraps
 from form import CreateForm,ReviewForm
 from flask_gravatar import Gravatar
+import os
 
 
 
@@ -18,9 +19,9 @@ now = datetime.datetime.now()
 date = now.strftime("%d %B %Y")
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///items.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SECRET_KEY'] = 'adadiadjadhydjqddq27e2jdhUDA'
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 db = SQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
