@@ -1,1 +1,1 @@
-web: gunicorn main:app
+web: gunicorn main:app --preload -b 127.0.0.1:5000
