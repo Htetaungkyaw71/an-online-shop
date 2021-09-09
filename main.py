@@ -67,6 +67,10 @@ class Category(db.Model):
     name = db.Column(db.String(50), nullable=False,)
 
 
+db.create_all()
+
+
+
 
 
 class Item(db.Model):
@@ -86,6 +90,7 @@ class Item(db.Model):
     carts = db.relationship("CartItem", back_populates="products")
     review = db.relationship("Review", back_populates="item")
 
+db.create_all()
 
 
 
@@ -101,6 +106,8 @@ class User(UserMixin,db.Model):
     checkout = db.relationship("Checkout", back_populates="owner")
     reviewer = db.relationship("Review", back_populates="author")
 
+db.create_all()
+
 
 
 
@@ -115,7 +122,7 @@ class CartItem(db.Model):
 
 
 
-
+db.create_all()
 
 
 
@@ -130,7 +137,7 @@ class Review(db.Model):
     item = db.relationship("Item",back_populates="review")
     text = db.Column(db.String(250), nullable=False)
 
-
+db.create_all()
 
 
 
@@ -143,7 +150,7 @@ class Contact(db.Model):
     text = db.Column(db.String(250), nullable=False)
 
 
-
+db.create_all()
 
 class Checkout(db.Model):
     __tablename__ = 'delivery'
@@ -159,7 +166,7 @@ class Checkout(db.Model):
     township = db.Column(db.String(250), nullable=False)
     address = db.Column(db.String(250), nullable=False)
 
-
+db.create_all()
 
 
 ROWS_PER_PAGE = 6
