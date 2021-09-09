@@ -2,7 +2,7 @@ from flask import Flask, redirect, request, render_template, flash,url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap
 from flask_wtf import FlaskForm
-from wtforms import StringField,IntegerField,SubmitField,SelectField,QuerySelectField
+from wtforms import StringField,IntegerField,SubmitField,SelectField
 from wtforms.validators import DataRequired
 from flask_login import UserMixin,LoginManager,login_user,logout_user,login_required,current_user
 import datetime
