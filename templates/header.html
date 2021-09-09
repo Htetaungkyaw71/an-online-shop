@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>E-SHOP</title>
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../static/css/prettyPhoto.css" rel="stylesheet">
+    <link href="../static/css/price-range.css" rel="stylesheet">
+    <link href="../static/css/animate.css" rel="stylesheet">
+	<link href="../static/css/main.css" rel="stylesheet">
+	<link href="../static/css/responsive.css" rel="stylesheet">
+    <!--[if lt IE 9]>
+    <script src="../static/js/html5shiv.js"></script>
+    <script src="../static/js/respond.min.js"></script>
+    <![endif]-->
+	<link rel="icon"  href="../static/images/home/online-shop.png" >
+    <link rel="shortcut icon" href="../static/images/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../static/images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../static/images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../static/images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../static/images/ico/apple-touch-icon-57-precomposed.png">
+</head>
+<body>
+
+	<header id="header"><!--header-->
+
+
+		<div class="header-middle"><!--header-middle-->
+			<div class="container">
+				<div class="row">
+					<div class="col-md-4 clearfix">
+						<div class="logo pull-left">
+							<a href="{{url_for('home')}}" class="lo">E-SHOP</a>
+						</div>
+
+					</div>
+					<div class="col-md-8 clearfix">
+						<div class="shop-menu clearfix pull-right">
+							<ul class="nav navbar-nav">
+
+
+								<li><a href="{{ url_for('checkout') }}"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+						<li><a href="{{ url_for('cart') }}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+								{% if not logged_in %}
+								<li><a href="{{ url_for('login') }}"><i class="fa fa-lock"></i> Login</a></li>
+
+								{% else %}
+								<li><a href="{{ url_for('logout') }}"><i class="fa fa-lock"></i> Logout</a></li>
+
+								{% endif %}
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/header-middle-->
+
+	<div class="header-bottom"><!--header-bottom-->
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-9">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+						</div>
+						<div class="mainmenu pull-left">
+							<ul class="nav navbar-nav collapse navbar-collapse">
+								<li><a href="{{ url_for('home') }}" class="active">Home</a></li>
+								<li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
+                                    <ul role="menu" class="sub-menu">
+
+
+										<li><a href="{{ url_for('checkout') }}">Checkout</a></li>
+										<li><a href="{{ url_for('cart') }}">Cart</a></li>
+
+
+										{% if not logged_in %}
+										<li><a href="{{ url_for('login') }}">Login</a></li>
+										{% else %}
+										<li><a href="{{ url_for('logout') }}">Logout</a></li>
+
+										{% endif %}
+                                    </ul>
+                                </li>
+
+
+								<li><a href="{{ url_for('contact') }}">Contact</a></li>
+								{% if current_user.id == 1 %}
+								<li><a href="{{ url_for('create') }}">Create</a></li>
+									<li><a href="{{ url_for('cmessage') }}">Contact message</a></li>
+								<li><a href="{{ url_for('delivery') }}">Delivery</a></li>
+								{% endif %}
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="search_box pull-right">
+
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/header-bottom-->
+	</header>

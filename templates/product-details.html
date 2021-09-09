@@ -1,0 +1,157 @@
+{% include 'header.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+	<div class="container">
+
+ 	{% with messages = get_flashed_messages() %}
+  {% if messages %}
+
+    {% for message in messages %}
+	<div class="alert alert-primary" role="alert" style="color:#FE980F;">
+     {{ message }}
+		</div>
+    {% endfor %}
+
+  {% endif %}
+{% endwith %}
+
+
+
+</div>
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="left-sidebar">
+						<h2>Category</h2>
+						<div class="panel-group category-products" id="accordian"><!--category-productsr-->
+							{% for category in categories %}
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+									<a href="{{ url_for('category',id=category.id) }}">{{category.name}}</a>
+									</h4>
+								</div>
+
+							</div>
+							{% endfor %}
+						</div><!--/category-products-->
+					</div>
+				</div>
+
+				<div class="col-sm-9 padding-right">
+					{% if item %}
+					<div class="product-details"><!--product-details-->
+						<div class="col-sm-5">
+							<div class="view-product">
+								<img src="{{item.image}}" alt="" class="img-fluid" />
+
+							</div>
+
+						</div>
+						<div class="col-sm-7">
+							<div class="product-information"><!--/product-information-->
+
+								<h2>{{item.name}}</h2>
+
+
+								<span>
+									<span>US ${{item.price}}</span>
+
+								</span>
+
+									<form action="{{url_for('add_to_cart',id=item.id)}}" method="POST">
+											<label>Quantity:</label>
+										<input type="number" value="1" name="quantity" style="width:50px;height:33px;border-radius:3px;border:1px solid gray;"  min="1" max="100" />
+										<button type="submit" class="btn btn-primary" style="margin-top:0px;height:33px" >
+												<i class="fa fa-shopping-cart"></i>  add
+										</button>
+
+									</form>
+
+
+
+
+
+								<div style="margin-top:10px">
+								<p style="text-align:left!important;" ><b>Availability:</b> {{item.availability}}</p>
+								<p><b>Condition:</b> {{item.condition}}</p>
+								<p><b>Brand:</b> {{item.brand}}</p>
+								<p><b>Date:</b> {{item.date}}</p>
+								</div>
+
+
+
+									{% if current_user.id == 1 %}
+									<p>
+										<a href="{{url_for('delete',id=item.id)}}" class="btn btn-primary">Delete</a>
+									<a href="{{url_for('edit',id=item.id)}}" class="btn btn-primary">Edit</a>
+									</p>
+								{% endif %}
+
+							</div><!--/product-information-->
+						</div>
+					</div><!--/product-details-->
+
+
+
+						<div class="c">
+							<h4>Reviews</h4>
+						<div class="comment">
+								 <ul class="commentList">
+									     {% for comment in item.review %}
+                <li>
+
+                    <div class="commenterImage">
+                      <img src="{{comment.email |gravatar}}" >
+
+
+                    </div>
+					<span class="date sub-text"><b>{{comment.name}}</b></span>
+                    <div class="commentText">
+
+                      <p>{{comment.text|safe}}</p>
+
+
+                    </div>
+
+                </li>
+									   {% endfor %}
+              </ul>
+
+								</div>
+						</div>
+
+
+
+
+
+
+
+					<div class="category-tab shop-details-tab" style="margin-top:10px;padding-top:10px"><!--category-tab-->
+
+						<div class="tab-content">
+
+							<div class="tab-pane fade active in" id="reviews" >
+								<div class="col-sm-12">
+									<ul>
+
+										<li><i class="fa fa-calendar-o"></i>&nbsp;&nbsp;{{date}}</li>
+									</ul>
+
+									<p><b>Write Your Review</b></p>
+										{{ wtf.quick_form(form,novalidate=True,button_map={"submit": "primary"}) }}
+
+								</div>
+							</div>
+
+						</div>
+					</div><!--/category-tab-->
+
+						{% endif %}
+
+				</div>
+			</div>
+		</div>
+	</section>
+	
+{% include 'footer.html' %}

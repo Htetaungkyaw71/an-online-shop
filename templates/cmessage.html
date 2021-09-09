@@ -1,0 +1,39 @@
+{% include 'header.html' %}
+	{% if messages %}
+	<section id="cart_items" >
+		<div class="container">
+
+			<div class="table-responsive cart_info">
+				<div style="padding:50px">
+						{% for message in messages %}
+
+						<h3>{{message.name}}</h3>
+						<h4>Email : {{message.email}}</h4>
+						<h4>Subject : {{message.subject}}</h4>
+					<h4>Message :
+
+					</h4>
+						<p>
+
+							{{message.text}}
+					</p>
+
+					<hr>
+
+						{% endfor %}
+				</div>
+			</div>
+		</div>
+	</section> <!--/#cart_items-->
+	{% else %}
+	<section  >
+		<div class="container" style="height:80vh;text:align:center">
+	<p style="text-align:center;font-size:30px;margin-top:100px">
+	no message
+	</p>
+
+		</div>
+	</section> <!--/#cart_items-->
+{% endif %}
+
+{% include 'footer.html' %}

@@ -1,0 +1,142 @@
+{% include 'header.html' %}
+
+<div class="container">
+
+ 	{% with messages = get_flashed_messages() %}
+  {% if messages %}
+
+    {% for message in messages %}
+	<div class="alert alert-primary" role="alert" style="color:#FE980F;">
+     {{ message }}
+		</div>
+    {% endfor %}
+
+  {% endif %}
+{% endwith %}
+
+
+
+</div>
+
+	<section id="cart_items">
+		<div class="container">
+			<div class="breadcrumbs">
+				<ol class="breadcrumb">
+				  <li><a href="#">Home</a></li>
+				  <li class="active">Check out</li>
+				</ol>
+			</div><!--/breadcrums-->
+
+
+
+			<div class="register-req">
+				<p>Please use Register And Checkout to easily get access to your order history</p>
+			</div><!--/register-req-->
+
+			<div class="shopper-informations" style="margin-bottom:70px">
+				<div class="row">
+					<div class="col-sm-8">
+						<div class="shopper-info">
+							<p>Delivery Information</p>
+							<form action="{{url_for('checkout')}}" method="POST">
+							<div class="row">
+								<div class="col-sm-6 clearfix">
+									<div class="form-one">
+										<input type="text" placeholder="User Name" name="name">
+										<input type="text" placeholder="Ph number" name="ph">
+									</div>
+								</div>
+								<div class="col-sm-6 clearfix">
+									<div class="bill-to">
+										<div class="form-two" style="width:280px">
+										<select name="region">
+											<option>-- Region --</option>
+											<option>Ayeyarwaddy</option>
+											<option>Yangon</option>
+											<option>Bago</option>
+											<option>Chin</option>
+											<option>Kachin</option>
+											<option>Kayin</option>
+											<option>Kayah</option>
+											<option>Magway</option>
+											<option>Naypyitaw</option>
+											<option>Rakhine</option>
+											<option>Sagaing</option>
+											<option>Shan</option>
+											<option>Tanintharyi</option>
+											<option>Mon</option>
+										</select>
+										<input type="text" placeholder="Township" name="township">
+
+										<input type="text" placeholder="Address" name="address">
+											{% if  total == 0 %}
+										<input type="submit" class="btn btn-primary" value="Place Order" disabled >
+											{% else %}
+											<input type="submit" class="btn btn-primary" value="Place Order" >
+											{% endif %}
+
+
+
+							</div>
+
+
+						</div>
+
+								</div>
+							</div>
+
+							</form>
+
+						</div>
+					</div>
+
+
+
+
+					<div class="col-sm-4">
+						<div class="order-message" style="padding:30px">
+							<p  style="font-size:22px">Order Summary</p>
+
+								<table style="font-size:20px">
+							<tr>
+									<td><span>SubTotal</span></td>
+
+									<td><b style="margin-left:50px">${{total}}</b></td>
+								</tr>
+							<tr >
+									<td><span>Delievery Fee</span></td>
+									{% if total == 0 %}
+								<td><b style="margin-left:50px">$0</b></td>
+								{% else %}
+									<td><b style="margin-left:50px">$2</b></td>
+								{% endif %}
+								</tr>
+							<tr  >
+									<td><span>Total</span></td>
+												{% if total == 0 %}
+								<td><b style="margin-left:50px">$0</b></td>
+								{% else %}
+									<td><b style="margin-left:50px">${{total+2}}</b></td>
+								{% endif %}
+
+								</tr>
+		</table>
+
+
+
+
+
+
+
+						</div>	
+					</div>					
+				</div>
+			</div>
+
+
+		</div>
+	</section> <!--/#cart_items-->
+
+	
+
+{% include 'footer.html' %}

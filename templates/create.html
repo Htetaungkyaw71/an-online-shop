@@ -1,0 +1,44 @@
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% include 'header.html' %}
+
+<div class="container">
+
+ 	{% with messages = get_flashed_messages() %}
+  {% if messages %}
+
+    {% for message in messages %}
+	<div class="alert alert-primary" role="alert" style="color:#FE980F;">
+     {{ message }}
+		</div>
+    {% endfor %}
+
+  {% endif %}
+{% endwith %}
+
+
+
+</div>
+
+
+	<section id="form" style="margin-top:50px"><!--form-->
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6 col-sm-offset-1 form-group">
+					<div class="login-form"><!--login form-->
+						{% if is_edit %}
+						<h2>Edit an item</h2>
+						{% else %}
+						<h2>Create an item</h2>
+						{% endif %}
+					{{ wtf.quick_form(form,novalidate=True,button_map={"submit": "primary"}) }}
+					</div><!--/login form-->
+				</div>
+
+			</div>
+		</div>
+	</section><!--/form-->
+
+
+
+{% include 'footer.html' %}

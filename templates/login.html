@@ -1,0 +1,58 @@
+{% include 'header.html' %}
+
+		<div class="container">
+
+ 	{% with messages = get_flashed_messages() %}
+  {% if messages %}
+
+    {% for message in messages %}
+	<div class="alert alert-primary" role="alert" style="color:#FE980F;">
+     {{ message }}
+		</div>
+    {% endfor %}
+
+  {% endif %}
+{% endwith %}
+
+
+
+</div>
+
+
+
+	<section id="form"><!--form-->
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-4 col-sm-offset-1">
+					<div class="login-form"><!--login form-->
+						<h2>Login to your account</h2>
+
+						<form action="{{ url_for('login') }}"method="POST">
+							<input type="email" placeholder="Email Address" name="email" />
+							<input type="password" placeholder="Password" name="password" />
+							<button type="submit" class="btn btn-default">Login</button>
+						</form>
+					</div><!--/login form-->
+				</div>
+				<div class="col-sm-1">
+					<h2 class="or">OR</h2>
+				</div>
+				<div class="col-sm-4">
+					<div class="signup-form"><!--sign up form-->
+						<h2>New User Signup!</h2>
+
+						<form action="{{url_for('register')}}" method="POST">
+							<input type="text" placeholder="Name" name="name"/>
+							<input type="email" placeholder="Email Address" name="email"/>
+							<input type="password" placeholder="Password" name="password"/>
+							<button type="submit" class="btn btn-default">Signup</button>
+						</form>
+					</div><!--/sign up form-->
+				</div>
+			</div>
+		</div>
+	</section><!--/form-->
+	
+	
+
+{% include 'footer.html' %}

@@ -1,0 +1,68 @@
+{% include 'header.html' %}
+
+	{% if checkouts %}
+
+
+
+<section>
+	<div class="container">
+		<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Ph number</th>
+      <th scope="col">Region</th>
+      <th scope="col">Township</th>
+		<th scope="col">Address</th>
+		 <th scope="col">Product</th>
+		 <th scope="col">quantity</th>
+		 <th scope="col">Totalprice</th>
+    </tr>
+  </thead>
+  <tbody>
+  	{% for message in checkouts %}
+    <tr>
+      <th>{{message.name}}</th>
+      <td>{{message.phnumber}}</td>
+      <td>{{message.region}}</td>
+      <td>{{message.township}}</td>
+		<td>{{message.address}}</td>
+		<td>
+			{{message.product}}
+		</td>
+		<td>
+{{message.quantity}}
+		</td>
+		 <td>{{message.total+2}}</td>
+
+      <td><a href="{{url_for('deletedelivery',id=message.id)}}">❌</a> </td>
+     
+
+
+    </tr>
+  {% endfor %}
+
+  </tbody>
+</table>
+	</div>
+
+</section>
+
+
+
+	{% else %}
+	<section>
+		<div class="container" style="height:80vh;text:align:center">
+	<p style="text-align:center;font-size:30px;margin-top:100px">
+	no delivery
+	</p>
+
+		</div>
+	</section> <!--/#cart_items-->
+{% endif %}
+
+
+
+
+
+{% include 'footer.html' %}

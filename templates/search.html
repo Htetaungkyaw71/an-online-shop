@@ -1,0 +1,116 @@
+{% include 'header.html' %}
+
+
+	<section>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="left-sidebar">
+						<h2>Category</h2>
+						<div class="panel-group category-products" id="accordian">
+
+
+						<div class="panel panel-default">
+								<div class="panel-heading">
+												<div class="search_box ">
+									<form action="{{url_for('search')}}" method="GET">
+									<input type="text" name="q" placeholder="Search">
+									</form>
+						</div>
+								</div>
+							</div>
+							<!--category-productsr-->
+
+
+
+						{% for category in categories %}
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h4 class="panel-title">
+									<a href="{{ url_for('category',id=category.id) }}">{{category.name}}</a>
+									</h4>
+								</div>
+
+							</div>
+							{% endfor %}
+
+						</div>
+
+
+
+
+
+
+					</div>
+				</div>
+
+				<div class="col-sm-9 padding-right">
+					<div class="features_items"><!--features_items-->
+						<h2 class="title text-center">Features Items</h2>
+						<div class="container">
+
+ 	{% with messages = get_flashed_messages() %}
+  {% if messages %}
+
+    {% for message in messages %}
+	<div class="alert alert-primary" role="alert" style="color:#FE980F;">
+     {{ message }}
+		</div>
+    {% endfor %}
+
+  {% endif %}
+{% endwith %}
+
+
+
+</div>
+							{% for item in items %}
+						<div class="col-sm-4">
+							<div class="product-image-wrapper">
+								<div class="single-products">
+										<div class="productinfo text-center">
+											<img src="{{item.image}}" alt="" class="img-fluid" width="300px" height="300px" />
+											<h2>${{item.price}}</h2>
+											<p>{{item.name}}</p>
+											<a href="{{url_for('detail',id=item.id)}}" class="btn btn-default add-to-cart"><i class="fa fa-eye"></i>View Product</a>
+										</div>
+										<div class="product-overlay">
+											<div class="overlay-content">
+												<h2>${{item.price}}</h2>
+									<p><a href="{{url_for('detail',id=item.id)}}" style="color:white">{{item.name}}</a></p>
+												<a href="{{url_for('detail',id=item.id)}}" class="btn btn-default add-to-cart"><i class="fa fa-eye"></i>View Product</a>
+											</div>
+										</div>
+								</div>
+
+							</div>
+						</div>
+						{% endfor %}
+
+
+
+
+
+
+
+		</div>
+
+				</div>
+			</div>
+		</div>
+	</section>
+
+
+
+
+{% include 'footer.html' %}
+
+
+
+
+
+
+
+
+
+
