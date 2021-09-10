@@ -25,6 +25,7 @@ if app.config['SQLALCHEMY_DATABASE_URI'].startswith("postgres://"):
     app.config['SQLALCHEMY_DATABASE_URI'] = app.config['SQLALCHEMY_DATABASE_URI'].replace("postgres://", "postgresql://", 1)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
+
 db = SQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.init_app(app)
@@ -187,6 +188,19 @@ def home():
                             categories=categories,
                            logged_in=current_user.is_authenticated
                            )
+
+@app.route('/cat',methods=["GET","POST"])
+@admin_required
+def cat():
+    if request.method == "POST":
+        cat = request.form.get('cat')
+        new = Category(
+            name=cat
+        )
+        db.session.add(new)
+        db.session.commit()
+        return redirect(url_for('home'))
+    return render_template('createcate.html')
 
 @app.route("/search",methods=["GET","POST"])
 def search():
