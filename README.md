@@ -34,7 +34,7 @@ This is a online shopping application. Users can create account and sell the pro
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/Htetaungkyaw71/Chat-Valley/issues).
+Feel free to check the [issues page](https://github.com/Htetaungkyaw71/an-online-shop/issues).
 
 ## Show your support
 
