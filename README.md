@@ -19,7 +19,7 @@
 
 ## Getting Started
 
-This is a online shopping application. Users can create account and sell the products. There is no other specification for this application.
+This is an online shopping application. Users can create account and sell the products. There is no other specification for this application.
 
 
 ## Authors
